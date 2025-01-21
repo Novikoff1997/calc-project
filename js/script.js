@@ -15,17 +15,6 @@ const totalFullCountInput = totalInputs[3];
 const totalCountRollbackInput = totalInputs[4];
 let screen = document.querySelectorAll(".screen");
 
-for (let i = 0; i < totalInputs.length; i++) {
-  totalInputsList[i + "_totalInput"] = totalInputs[i];
-}
-otherItems.forEach((e) => {
-  if (e.classList.contains("percent")) {
-    percent.push(e);
-  } else {
-    number.push(e);
-  }
-});
-
 const appData = {
   title: "",
   screens: [],
