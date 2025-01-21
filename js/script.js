@@ -3,18 +3,16 @@ const calcButton = document.getElementsByClassName("handler_btn")[0];
 const resetButton = document.getElementsByClassName("handler_btn")[1];
 const addButton = document.querySelector(".screen-btn");
 const otherItems = document.querySelectorAll(".other-items");
-const percent = [];
-const number = [];
+const percentItems = document.querySelectorAll(".other-items.percent");
+const numberItems = document.querySelectorAll(".other-items.number");
 const inputRange = document.querySelector(".rollback").querySelector('[type = "range"]');
 const rangeValue = document.querySelector(".rollback").querySelector(".range-value");
 const totalInputs = document.getElementsByClassName("total-input");
-const totalInputsList = {};
-/* Если нужно было получить прям каждый элемент total_input в отдельную переменную, написал ниже, но так кажется лучше! (И не коллекция, и все элементы получены, и код не размазан) */
-// const totalInput_0 = totalInputs[0];
-// const totalInput_1 = totalInputs[1];
-// const totalInput_2 = totalInputs[2];
-// const totalInput_3 = totalInputs[3];
-// const totalInput_4 = totalInputs[4];
+const totalInput = totalInputs[0];
+const totalCountInput = totalInputs[1];
+const totalCountOtherInput = totalInputs[2];
+const totalFullCountInput = totalInputs[3];
+const totalCountRollbackInput = totalInputs[4];
 let screen = document.querySelectorAll(".screen");
 
 for (let i = 0; i < totalInputs.length; i++) {
