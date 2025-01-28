@@ -36,7 +36,7 @@ const appData = {
     appData.addTitle();
     calcButton.addEventListener("click", appData.start);
     addButton.addEventListener("click", appData.addScreenBlock);
-    appData.addRollback();
+    inputRange.addEventListener("input", appData.addRollback);
   },
   showResult: function () {
     totalInput.value = appData.screenPrice;
@@ -69,10 +69,8 @@ const appData = {
     }
   },
   addRollback: function () {
-    inputRange.addEventListener("input", (event) => {
-      rangeValue.textContent = inputRange.value + "%";
-      appData.calcRollback();
-    });
+    rangeValue.textContent = inputRange.value + "%";
+    appData.calcRollback();
   },
   calcRollback: function () {
     appData.rollback = inputRange.value;
