@@ -139,8 +139,6 @@ const appData = {
       }
     });
   },
-  updateCMSValues: function () {},
-
   init: function () {
     this.addTitle();
     calcButton.addEventListener("click", this.start);
@@ -229,16 +227,12 @@ const appData = {
       }
 
       if (this.wordPressPercent) {
-        console.log("Первый варинт");
         this.fullPrice = this.screenPrice + this.servicePricesPercent + this.servicePricesNumber;
         this.fullPrice += (this.fullPrice * this.wordPressPercent) / 100;
       } else if (this.cmsOtherPercent) {
-        console.log("Второй варинт");
         this.fullPrice = this.screenPrice + this.servicePricesPercent + this.servicePricesNumber;
         this.fullPrice += (this.fullPrice * this.cmsOtherPercent) / 100;
       } else {
-        console.log("Трейтий варинт");
-        console.log(this.wordPressPercent);
         this.fullPrice = this.screenPrice + this.servicePricesPercent + this.servicePricesNumber;
       }
 
