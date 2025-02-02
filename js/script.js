@@ -95,6 +95,7 @@ const appData = {
   cmsReset: function () {
     cmsVariants.style.display = "none";
     cmsInput.style.display = "none";
+    cmsVariants.querySelector("select").selectedIndex = 0;
   },
   resetData: function () {
     resetButton.addEventListener("click", () => {
