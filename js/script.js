@@ -47,8 +47,8 @@ const appData = {
     this.servicePercentPrice = 0;
     this.servicesPercent = {};
     this.servicesNumber = {};
-    // this.wordPressPercent = 0;
-    // this.cmsOtherPercent = 0;
+    this.wordPressPercent = 0;
+    this.cmsOtherPercent = 0;
   },
   elementsDisabled: function () {
     screens.forEach((elem) => {
@@ -101,20 +101,20 @@ const appData = {
     resetButton.addEventListener("click", () => {
       calcButton.style.display = "block";
       resetButton.style.display = "none";
-      appData.elementsEnabled();
-      appData.clearData();
-      appData.showResult();
-      appData.removeScreens();
-      appData.resetCheckbox();
-      appData.resetRange();
-      appData.cmsReset();
+      this.elementsEnabled();
+      this.clearData();
+      this.showResult();
+      this.removeScreens();
+      this.resetCheckbox();
+      this.resetRange();
+      this.cmsReset();
     });
   },
   reset: function () {
     calcButton.style.display = "none";
     resetButton.style.display = "block";
-    appData.elementsDisabled();
-    appData.resetData();
+    this.elementsDisabled();
+    this.resetData();
   },
   addTitle: function () {
     document.title = title.textContent;
@@ -129,23 +129,23 @@ const appData = {
 
     cmsVariants.addEventListener("change", (event) => {
       if (event.target.selectedIndex === 1) {
-        appData.wordPressPercent = +event.target.value;
+        this.wordPressPercent = +event.target.value;
         cmsInput.style.display = "none";
       } else if (event.target.selectedIndex === 2) {
-        appData.wordPressPercent = 0;
+        this.wordPressPercent = 0;
         cmsInput.style.display = "flex";
         cmsInput.querySelector("input").addEventListener("input", (event) => {
-          appData.cmsOtherPercent = +event.target.value;
+          this.cmsOtherPercent = +event.target.value;
         });
       }
     });
   },
   init: function () {
     this.addTitle();
-    calcButton.addEventListener("click", this.start);
-    addButton.addEventListener("click", this.addScreenBlock);
-    inputRange.addEventListener("input", this.addRollback);
-    cmsCheckbox.addEventListener("change", this.cms);
+    calcButton.addEventListener("click", this.start.bind(this));
+    addButton.addEventListener("click", this.addScreenBlock.bind(this));
+    inputRange.addEventListener("input", this.addRollback.bind(this));
+    cmsCheckbox.addEventListener("change", this.cms.bind(this));
   },
   showResult: function () {
     totalInput.value = this.screenPrice;
@@ -176,16 +176,16 @@ const appData = {
     if (this.screens.length === 0) {
       alert("Не все поля экранов заполнены!");
     } else {
-      appData.reset();
+      this.reset();
     }
   },
   addRollback: function () {
     rangeValue.textContent = inputRange.value + "%";
-    appData.calcRollback();
+    this.calcRollback();
   },
   calcRollback: function () {
     this.rollback = inputRange.value;
-    this.servicePercentPrice = this.fullPrice - this.fullPrice * (this.rollback / 100);
+    this.servicePercentPrice = Math.floor(this.fullPrice - this.fullPrice * (this.rollback / 100));
     totalCountRollbackInput.value = this.servicePercentPrice;
   },
   addServices: function () {
@@ -238,14 +238,15 @@ const appData = {
       }
 
       this.servicePercentPrice = this.fullPrice - this.fullPrice * (this.rollback / 100);
+      this.servicePercentPrice = Math.floor(this.servicePercentPrice);
     }
   },
   start: function () {
-    appData.addScreens();
-    appData.addServices();
-    appData.addPrices();
-    appData.calcRollback();
-    appData.showResult();
+    this.addScreens();
+    this.addServices();
+    this.addPrices();
+    this.calcRollback();
+    this.showResult();
     // appData.logger();
   },
   logger: function () {
